@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <!--
-Bookstore using ID/IDREFs
+Bookstore with DTD (Document Type Definition) using ID/IDREFs
 
 % xmllint 2-noout Bookstore2.dtd.xml
 %

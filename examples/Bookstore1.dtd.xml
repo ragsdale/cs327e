@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <!--
-Bookstore with DTD
+Bookstore with DTD (Document Type Definition)
 
 % xmllint 2-noout Bookstore1.dtd.xml
 %
