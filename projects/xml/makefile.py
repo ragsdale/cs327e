@@ -2,13 +2,13 @@ all:
 	make XML.zip
 
 clean:
-	rm -f XML.html
-	rm -f XML.log
-	rm -f XML.zip
+	rm -f *.pyc
 	rm -f RunXML.out
 	rm -f RunXML.tmp
 	rm -f TestXML.out
-	rm -f *.pyc
+	rm -f XML.html
+	rm -f XML.log
+	rm -f XML.zip
 
 diff: RunXML.in RunXML.py XML.py
 	RunXML.py < RunXML.in > RunXML.tmp
@@ -16,13 +16,13 @@ diff: RunXML.in RunXML.py XML.py
 	rm RunXML.tmp
 
 turnin-list:
-	turnin --list thunt cs373pj2
+	turnin --list lara cs327epj2
 
 turnin-submit: XML.zip
-	turnin --submit thunt cs373pj2 XML.zip
+	turnin --submit lara cs327epj2 XML.zip
 
 turnin-verify:
-	turnin --verify thunt cs373pj2
+	turnin --verify lara cs327epj2
 
 XML.html: XML.py
 	pydoc -w XML
