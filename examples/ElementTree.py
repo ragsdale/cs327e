@@ -17,11 +17,26 @@ print()
 x = fromstring(s)
 assert(type(x) is Element)
 
-for v in x :
-    print(v)
-    for w in v :
-        print(w)
-    print()
+print("First Leve Elements")
+print()
+for u in x :
+    print(u)
+print()
+
+print("Second Level Elements")
+print()
+for u in x :
+    for v in u :
+        print(v)
+print()
+
+print("Third Level Elements")
+print()
+for u in x :
+    for v in u :
+        for w in v :
+            print(w)
+print()
 
 print("Done.")
 
