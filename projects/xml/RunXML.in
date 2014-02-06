@@ -25,6 +25,30 @@
         <yellow></yellow>
     </green>
 </red>
+<red><green></green></red>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<red><blue></blue></red>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<red><yellow></yellow></red>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
 <green><blue></blue></green>
 
 <red>
@@ -39,14 +63,6 @@
     <green>
         <blue></blue>
         <yellow></yellow>
-    </green>
-</red>
-<green><purple></purple></green>
-
-<red>
-    <green>
-        <blue></blue>
-        <yellow><purple></purple></yellow>
     </green>
 </red>
 <green><purple></purple></green>
