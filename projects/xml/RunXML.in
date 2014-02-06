@@ -14,18 +14,39 @@
 </THU>
 <Team><Cooly></Cooly></Team>
 
-<THU>
-	<Team>
-		<ACRush></ACRush>
-		<Jelly></Jelly>
-		<Cooly></Cooly>
-	</Team>
-	<JiaJia>
-		<Team>
-			<Ahyangyi></Ahyangyi>
-			<Dragon></Dragon>
-			<Cooly><Amber></Amber></Cooly>
-		</Team>
-	</JiaJia>
-</THU>
+<THU><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></THU>
 <Team><Cooly></Cooly></Team>
+
+<THU><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></THU><Team><Cooly></Cooly></Team>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<green><blue></blue></green>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<green><yellow></yellow></green>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<green><purple></purple></green>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow><purple></purple></yellow>
+    </green>
+</red>
+<green><purple></purple></green>
