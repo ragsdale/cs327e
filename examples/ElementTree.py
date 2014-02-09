@@ -4,7 +4,7 @@
 # ElementTree.py
 # --------------
 
-from xml.etree.ElementTree import Element, fromstring
+from xml.etree.ElementTree import Element, fromstring, tostring
 
 print("ElementTree.py")
 print()
@@ -20,14 +20,14 @@ assert(type(x) is Element)
 print("First LeveL Elements")
 print()
 for u in x :
-    print(u)
+    print(u.tag)
 print()
 
 print("Second Level Elements")
 print()
 for u in x :
     for v in u :
-        print(v)
+        print(v.tag)
 print()
 
 print("Third Level Elements")
@@ -35,7 +35,7 @@ print()
 for u in x :
     for v in u :
         for w in v :
-            print(w)
+            print(w.tag)
 print()
 
 print("Done.")
