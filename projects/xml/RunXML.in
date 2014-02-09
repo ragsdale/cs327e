@@ -66,3 +66,19 @@
     </green>
 </red>
 <green><purple></purple></green>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<green><blue></blue><yellow></yellow></green>
+
+<red>
+    <green>
+        <blue></blue>
+        <yellow></yellow>
+    </green>
+</red>
+<green><yellow></yellow><blue></blue></green>
