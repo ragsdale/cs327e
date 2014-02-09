@@ -9,34 +9,19 @@ from xml.etree.ElementTree import Element, fromstring, tostring
 print("ElementTree.py")
 print()
 
+def traverse (a, d = "") :
+    print(d + a.tag)
+    for v in a :
+        traverse(v, d + "\t")
+    print(d + "/" + a.tag)
+
 s = "<xml>" + "".join(open("ElementTree.xml")) + "</xml>"
 assert(type(s) is str)
-print(s)
-print()
 
-x = fromstring(s)
-assert(type(x) is Element)
+a = fromstring(s)
+assert(type(a) is Element)
 
-print("First LeveL Elements")
-print()
-for u in x :
-    print(u.tag)
-print()
-
-print("Second Level Elements")
-print()
-for u in x :
-    for v in u :
-        print(v.tag)
-print()
-
-print("Third Level Elements")
-print()
-for u in x :
-    for v in u :
-        for w in v :
-            print(w.tag)
-print()
+traverse(a)
 
 print("Done.")
 
