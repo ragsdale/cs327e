@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-CS327e: Quiz #9 (5 pts) <Aizhuldyz>
+CS327e: Quiz #10 (5 pts) <Fiona>
 """
 
 """ ----------------------------------------------------------------------
@@ -39,7 +39,7 @@ Quiz9.xml contains the following:
 
 from xml.etree.ElementTree import fromstring
 
-s = "<xml>" + "".join(open("Quiz9.xml")) + "</xml>"
+s = "<xml>" + "".join(open("Quiz10.xml")) + "</xml>"
 
 x = fromstring(s)
 
