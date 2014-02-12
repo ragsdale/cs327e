@@ -67,5 +67,8 @@ xml
 	/Team
 /xml
 
+THU
+Team
+
 Done.
 """
