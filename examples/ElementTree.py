@@ -24,6 +24,15 @@ assert(type(a) is Element)
 traverse(a)
 print()
 
+p = iter(a)
+
+e = next(p)
+print(e.tag)
+
+e = next(p)
+print(e.tag)
+print()
+
 print("Done.")
 
 """
