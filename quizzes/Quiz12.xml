@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<!--
+CS327e: Quiz #12 (5 pts) <Fiona>
+-->
+
+<!--
+ 1. List ANY TWO things that well-formed XML has to adhere to.
+    (2 pts)
+
+single root element
+matched tags
+proper nesting
+optional attributes
+unique attributes
+-->
+
+<!--
+ 2. Find FOUR things that make the following XML malformed.
+    (2 pts)
+
+Attribute Price redefined
+Extra content at the end of the document
+-->
+
+<Bookstore>
+   <Book ISBN="ISBN-0-13-815504-6" Price="100" Price="200">
+      <Remark>
+      Buy this book bundled with "A First Course" - a great deal!
+      </Remark>
+      <Title>Database Systems: The Complete Book</Title>
+      <Authors>
+         <Author>
+            <First_Name>Hector</First_Name>
+            <Last_Name>Garcia-Molina</Last_Name>
+         </Author>
+      </Authors>
+   </Book>
+</Bookstore>
+<Bookstore>
+</Bookstore>
