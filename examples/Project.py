@@ -7,7 +7,7 @@
 print("Project.py")
 
 def project (r, *a) :
-    return [{v : t[v] for v in a} for t in r]
+    return [{v : t[v] for v in a if v in t} for t in r]
 
 Student = [ \
     {"sID" : 123, "sName" : 'Amy',    "GPA" : 3.9, "sizeHS" : 1000},
