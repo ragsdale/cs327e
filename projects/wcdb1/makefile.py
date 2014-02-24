@@ -32,11 +32,13 @@ WCDB.log:
 
 WCDB.zip: makefile                          \
           WCDB.html WCDB.log WCDB.py        \
+          WCDB.xml WCDB.xsd.xml             \
           RunWCDB.in RunWCDB.out RunWCDB.py \
           TestWCDB.py TestWCDB.out
 	zip -r WCDB.zip                          \
            makefile                          \
            WCDB.html WCDB.log WCDB.py        \
+           WCDB.xml WCDB.xsd.xml             \
            RunWCDB.in RunWCDB.out RunWCDB.py \
            TestWCDB.py TestWCDB.out
 
