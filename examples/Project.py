@@ -62,16 +62,16 @@ print(x)
 print()
 """
 12
-[{'decision': True, 'sID': 123},
+[{'decision': True,  'sID': 123},
  {'decision': False, 'sID': 123},
  {'decision': False, 'sID': 234},
- {'decision': True, 'sID': 345},
+ {'decision': True,  'sID': 345},
  {'decision': False, 'sID': 345},
- {'decision': True, 'sID': 678},
- {'decision': True, 'sID': 987},
+ {'decision': True,  'sID': 678},
+ {'decision': True,  'sID': 987},
  {'decision': False, 'sID': 876},
- {'decision': True, 'sID': 876},
- {'decision': True, 'sID': 765},
+ {'decision': True,  'sID': 876},
+ {'decision': True,  'sID': 765},
  {'decision': False, 'sID': 765},
  {'decision': False, 'sID': 543}]
 """
@@ -82,18 +82,18 @@ print(x)
 print()
 """
 12
-[{'major': 'CS', 'decision': True},
- {'major': 'EE', 'decision': False},
- {'major': 'EE', 'decision': True},
- {'major': 'biology', 'decision': False},
+[{'major': 'CS',             'decision': True},
+ {'major': 'EE',             'decision': False},
+ {'major': 'EE',             'decision': True},
+ {'major': 'biology',        'decision': False},
  {'major': 'bioengineering', 'decision': True},
  {'major': 'bioengineering', 'decision': False},
- {'major': 'history', 'decision': True},
- {'major': 'CS', 'decision': False},
- {'major': 'biology', 'decision': True},
+ {'major': 'history',        'decision': True},
+ {'major': 'CS',             'decision': False},
+ {'major': 'biology',        'decision': True},
  {'major': 'marine biology', 'decision': False},
- {'major': 'history', 'decision': False},
- {'major': 'psychology', 'decision': True}]
+ {'major': 'history',        'decision': False},
+ {'major': 'psychology',     'decision': True}]
 """
 
 print("Done.")

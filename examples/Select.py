@@ -62,11 +62,11 @@ print(x)
 print()
 """
 5
-[{'sName': 'Amy', 'GPA': 3.9, 'sizeHS': 1000, 'sID': 123},
+[{'sName': 'Amy',   'GPA': 3.9, 'sizeHS': 1000, 'sID': 123},
  {'sName': 'Doris', 'GPA': 3.9, 'sizeHS': 1000, 'sID': 456},
- {'sName': 'Fay', 'GPA': 3.8, 'sizeHS': 200, 'sID': 678},
- {'sName': 'Irene', 'GPA': 3.9, 'sizeHS': 400, 'sID': 876},
- {'sName': 'Amy', 'GPA': 3.9, 'sizeHS': 1000, 'sID': 654}]
+ {'sName': 'Fay',   'GPA': 3.8, 'sizeHS': 200,  'sID': 678},
+ {'sName': 'Irene', 'GPA': 3.9, 'sizeHS': 400,  'sID': 876},
+ {'sName': 'Amy',   'GPA': 3.9, 'sizeHS': 1000, 'sID': 654}]
 """
 
 x = select(Student, lambda v : (v["GPA"] > 3.7) and (v["sizeHS"] < 1000))
@@ -75,7 +75,7 @@ print(x)
 print()
 """
 2
-[{'sName': 'Fay', 'GPA': 3.8, 'sizeHS': 200, 'sID': 678},
+[{'sName': 'Fay',   'GPA': 3.8, 'sizeHS': 200, 'sID': 678},
  {'sName': 'Irene', 'GPA': 3.9, 'sizeHS': 400, 'sID': 876}]
 """
 
@@ -85,8 +85,8 @@ print(x)
 print()
 """
 3
-[{'major': 'CS', 'cName': 'Stanford', 'decision': True, 'sID': 123},
- {'major': 'CS', 'cName': 'Stanford', 'decision': True, 'sID': 987},
+[{'major': 'CS', 'cName': 'Stanford', 'decision': True,  'sID': 123},
+ {'major': 'CS', 'cName': 'Stanford', 'decision': True,  'sID': 987},
  {'major': 'CS', 'cName': 'Stanford', 'decision': False, 'sID': 876}]
 """
 
