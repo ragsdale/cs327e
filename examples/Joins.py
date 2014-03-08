@@ -35,6 +35,29 @@ def theta_join_1 (r, s, bp) :
 def theta_join_2 (r, s, bp) :
     return [dict(list(v.items()) + list(w.items())) for v in r for w in s if bp(v, w)]
 
+def match (v, w) :
+    for i in v :
+        for j in w :
+            if (i == j) and (v[i] == w[j]) :
+                return True
+    return False
+
+def natural_join_1 (r, s) :
+    x = []
+    for v in r :
+        for w in s :
+            if match(v, w) :
+                y = {}
+                for u in v :
+                    y[u] = v[u]
+                for u in w :
+                    y[u] = w[u]
+                x.append(y)
+    return x
+
+def natural_join_2 (r, s) :
+    return [dict(list(v.items()) + list(w.items())) for v in r for w in s if match(v, w)]
+
 print("Joins.py")
 
 r = [ \
@@ -84,5 +107,18 @@ def test (f) :
 
 test(theta_join_1)
 test(theta_join_1)
+
+def test (f) :
+    x = f(r, s)
+    assert(len(x) == 3)
+    assert(
+        x
+        ==
+        [{'A': 1, 'B': 6, 'C': 7},
+         {'A': 2, 'B': 7, 'C': 8},
+         {'A': 2, 'B': 7, 'C': 9}])
+
+test(natural_join_1)
+test(natural_join_2)
 
 print("Done.")
