@@ -1,0 +1,16 @@
+--
+CS327e: Quiz #23 (5 pts) <Aizhuldyz>
+--
+
+--------------------------------------------------------------------------
+ 1. In the Limitations section the authors list two problems in
+    evolutionary database design that they have NOT solved.
+    What are they?
+    [Evolutionary Database Design]
+    (4 pts)
+--
+
+"We developed an application database for a single application rather than
+an integration database that tries to integrate multiple databases."
+
+"We don't have to keep the production databases up 24/7"
