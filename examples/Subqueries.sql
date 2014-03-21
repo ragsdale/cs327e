@@ -83,13 +83,30 @@ insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
 /* -----------------------------------------------------------------------
+Select
+*/
+
+select "Select";
+
+select *
+    from Student
+    order by sID;
+
+select *
+    from Apply
+    order by sID;
+
+select *
+    from College
+    order by cName;
+
+/* -----------------------------------------------------------------------
 ID, name, and GPA of students who applied in CS
 */
 
 select "ID, name, and GPA of students who applied in CS";
 
-select "this is not right, why?";
-# duplicates
+select "this is not right, why? - duplicates";
 
 select *
     from Student
@@ -116,7 +133,7 @@ select "this is also right, using subquery, with in";
 select sID, sName, GPA
     from Student
     where sID in
-        (select sID from Apply where major = 'CS')
+        (select distinct sID from Apply where major = 'CS')
     order by sID;
 
 /* -----------------------------------------------------------------------
@@ -125,8 +142,7 @@ GPA of students who applied in CS
 
 select "GPA of students who applied in CS";
 
-select "this is not right, why?";
-# duplicates
+select "this is not right, why? - duplicates";
 
 select *
     from Student
@@ -140,8 +156,7 @@ select GPA
     where major = 'CS'
     order by GPA desc;
 
-select "this is not right either, why?";
-# removed some wrong duplicates
+select "this is not right either, why? - removed some wrong duplicates";
 
 select distinct GPA
     from Student
@@ -153,12 +168,12 @@ select "this is right, using subquery, with in";
 
 select *
     from Student
-    where sID in (select sID from Apply where major = 'CS')
+    where sID in (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
 
 select GPA
     from Student
-    where sID in (select sID from Apply where major = 'CS')
+    where sID in (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
 
 /* -----------------------------------------------------------------------
@@ -167,12 +182,7 @@ ID of students who have applied to major in CS but not in EE
 
 select "ID of students who have applied to major in CS but not in EE";
 
-select "this is not right, why?";
-# includes students majoring in non-CS, non-EE
-
-select *
-    from Apply
-    order by sID;
+select "this is not right, why? - includes students majoring in non-CS, non-EE";
 
 select *
     from Apply as R
@@ -253,8 +263,7 @@ students with highest GPA
 
 select "students with highest GPA";
 
-select "using subquery, with not exists, is insufficient, why?";
-# because of nulls
+select "using subquery, with not exists, is insufficient, why? - because of nulls";
 
 select sID, sName, GPA
     from Student as R
