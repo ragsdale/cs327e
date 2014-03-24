@@ -1,9 +1,15 @@
 use downing_test;
 
 /* -----------------------------------------------------------------------
+Explain
+http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
+*/
+
+/* -----------------------------------------------------------------------
 Drop
 */
 
+select "";
 select "Drop";
 
 drop table if exists Student;
@@ -14,6 +20,7 @@ drop table if exists College;
 Create
 */
 
+select "";
 select "Create";
 
 create table Student (
@@ -37,6 +44,7 @@ create table College (
 Insert
 */
 
+select "";
 select "Insert";
 
 insert into Student values (123, 'Amy',    3.9,  1000);
@@ -86,65 +94,93 @@ insert into College values ('Stanford', 'CA', 15000);
 Select
 */
 
+select "";
 select "Select";
 
-select *
-    from Student
-    order by sID;
+explain select * from Student;
+        select * from Student;
 
-select *
-    from Apply
-    order by sID;
+explain select * from Apply;
+        select * from Apply;
 
-select *
-    from College
-    order by cName;
+explain select * from College;
+        select * from College;
 
 /* -----------------------------------------------------------------------
 ID, name, and GPA of students who applied in CS
 */
 
+select "";
 select "ID, name, and GPA of students who applied in CS";
 
 select "this is not right, why? - duplicates";
 
+explain select *
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS';
+
 select *
     from Student
     inner join Apply using (sID)
-    where major = 'CS'
-    order by sID;
+    where major = 'CS';
+
+explain select sID, sName, GPA
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS';
 
 select sID, sName, GPA
     from Student
     inner join Apply using (sID)
-    where major = 'CS'
-    order by sID;
+    where major = 'CS';
 
 select "this is right";
+
+explain select distinct sID, sName, GPA
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS';
 
 select distinct sID, sName, GPA
     from Student
     inner join Apply using (sID)
-    where major = 'CS'
-    order by sID;
+    where major = 'CS';
 
 select "this is also right, using subquery, with in";
+
+explain select sID, sName, GPA
+    from Student
+    where sID in
+        (select distinct sID from Apply where major = 'CS');
 
 select sID, sName, GPA
     from Student
     where sID in
-        (select distinct sID from Apply where major = 'CS')
-    order by sID;
+        (select distinct sID from Apply where major = 'CS');
 
 /* -----------------------------------------------------------------------
 GPA of students who applied in CS
 */
 
+select "";
 select "GPA of students who applied in CS";
 
 select "this is not right, why? - duplicates";
 
+explain select *
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS'
+    order by GPA desc;
+
 select *
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS'
+    order by GPA desc;
+
+explain select GPA
     from Student
     inner join Apply using (sID)
     where major = 'CS'
@@ -158,6 +194,12 @@ select GPA
 
 select "this is not right either, why? - removed some wrong duplicates";
 
+explain select distinct GPA
+    from Student
+    inner join Apply using (sID)
+    where major = 'CS'
+    order by GPA desc;
+
 select distinct GPA
     from Student
     inner join Apply using (sID)
@@ -166,7 +208,17 @@ select distinct GPA
 
 select "this is right, using subquery, with in";
 
+explain select *
+    from Student
+    where sID in (select distinct sID from Apply where major = 'CS')
+    order by GPA desc;
+
 select *
+    from Student
+    where sID in (select distinct sID from Apply where major = 'CS')
+    order by GPA desc;
+
+explain select GPA
     from Student
     where sID in (select distinct sID from Apply where major = 'CS')
     order by GPA desc;
@@ -180,11 +232,24 @@ select GPA
 ID of students who have applied to major in CS but not in EE
 */
 
+select "";
 select "ID of students who have applied to major in CS but not in EE";
 
-select "this is not right, why? - includes students majoring in non-CS, non-EE";
+select "this is not right, why? - includes students majoring in CS, regardless of other majors";
+
+explain select *
+    from Apply as R
+    inner join Apply as S using (sID)
+    where R.major  = 'CS'  and
+          S.major != 'EE';
 
 select *
+    from Apply as R
+    inner join Apply as S using (sID)
+    where R.major  = 'CS'  and
+          S.major != 'EE';
+
+explain select distinct R.sID
     from Apply as R
     inner join Apply as S using (sID)
     where R.major  = 'CS'  and
@@ -196,7 +261,22 @@ select distinct R.sID
     where R.major  = 'CS'  and
           S.major != 'EE';
 
+explain select distinct sID
+    from Apply
+    where major = 'CS';
+
+select distinct sID
+    from Apply
+    where major = 'CS';
+
 select "this is right, using subquery, with in and not in";
+
+explain select sID
+    from Student
+    where
+        sID in     (select sID from Apply where major = 'CS')
+        and
+        sID not in (select sID from Apply where major = 'EE');
 
 select sID
     from Student
@@ -209,9 +289,22 @@ select sID
 colleges, such that there's another college in the same state
 */
 
+select "";
 select "colleges, such that there's another college in the same state";
 
+explain select *
+    from College as R inner join College as S
+    where (R.cName != S.cName) and
+          (R.state =  S.state)
+    order by R.cName;
+
 select *
+    from College as R inner join College as S
+    where (R.cName != S.cName) and
+          (R.state =  S.state)
+    order by R.cName;
+
+explain select R.cName, R.state
     from College as R inner join College as S
     where (R.cName != S.cName) and
           (R.state =  S.state)
@@ -225,6 +318,14 @@ select R.cName, R.state
 
 select "using as, using subquery, with exists";
 
+explain select cName, state
+    from College as R
+    where exists
+        (select *
+            from College as S
+            where (R.cName != S.cName) and
+                  (R.state =  S.state));
+
 select cName, state
     from College as R
     where exists
@@ -237,9 +338,17 @@ select cName, state
 colleges with highest enrollment
 */
 
+select "";
 select "colleges with highest enrollment";
 
 select "using subquery, with not exists";
+
+explain select cName, enrollment
+    from College as R
+    where not exists
+        (select *
+            from College as S
+            where R.enrollment < S.enrollment);
 
 select cName, enrollment
     from College as R
@@ -249,6 +358,13 @@ select cName, enrollment
             where R.enrollment < S.enrollment);
 
 select "using subquery, with all";
+
+explain select cName, enrollment
+    from College
+    where enrollment >= all
+        (select enrollment
+            from College
+            where enrollment is not null);
 
 select cName, enrollment
     from College
@@ -261,9 +377,18 @@ select cName, enrollment
 students with highest GPA
 */
 
+select "";
 select "students with highest GPA";
 
 select "using subquery, with not exists, is insufficient, why? - because of nulls";
+
+explain select sID, sName, GPA
+    from Student as R
+    where not exists
+        (select *
+            from Student as S
+            where R.GPA < S.GPA)
+    order by sID;
 
 select sID, sName, GPA
     from Student as R
@@ -274,6 +399,17 @@ select sID, sName, GPA
     order by sID;
 
 select "this is right";
+
+explain select sID, sName, GPA
+    from Student as R
+    where
+        not exists
+            (select *
+                from Student as S
+                where R.GPA < S.GPA)
+        and
+        (GPA is not null)
+    order by sID;
 
 select sID, sName, GPA
     from Student as R
@@ -288,6 +424,14 @@ select sID, sName, GPA
 
 select "this is also right, using subquery, with all";
 
+explain select sID, sName, GPA
+    from Student
+    where GPA >= all
+        (select GPA
+            from Student
+            where GPA is not null)
+    order by sID;
+
 select sID, sName, GPA
     from Student
     where GPA >= all
@@ -299,6 +443,9 @@ select sID, sName, GPA
 /* -----------------------------------------------------------------------
 Drop
 */
+
+select "";
+select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;

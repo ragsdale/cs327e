@@ -1,8 +1,16 @@
 use downing_test;
 
 /* -----------------------------------------------------------------------
+Explain
+http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
+*/
+
+/* -----------------------------------------------------------------------
 Drop
 */
+
+select "";
+select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;
@@ -11,6 +19,9 @@ drop table if exists College;
 /* -----------------------------------------------------------------------
 Create
 */
+
+select "";
+select "Create";
 
 create table Student (
     sID    int,
@@ -32,6 +43,9 @@ create table College (
 /* -----------------------------------------------------------------------
 Insert
 */
+
+select "";
+select "Insert";
 
 insert into Student values (123, 'Amy',    3.9,  1000);
 insert into Student values (234, 'Bob',    3.6,  1500);
@@ -77,21 +91,45 @@ insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
 /* -----------------------------------------------------------------------
+Select
+*/
+
+select "";
+select "Select";
+
+explain select * from Student;
+        select * from Student;
+
+explain select * from Apply;
+        select * from Apply;
+
+explain select * from College;
+        select * from College;
+
+/* -----------------------------------------------------------------------
 Student cross join Apply
 */
 
+select "";
 select "Cross Join";
 
 # select *
-#     from Student, Apply;
+#     from Student, Apply
+#     order by Student.sID;
+
+explain select *
+    from Student cross join Apply
+    order by Student.sID;
 
 select *
-    from Student cross join Apply;
+    from Student cross join Apply
+    order by Student.sID;
 
 /* -----------------------------------------------------------------------
 Student theta join[Student.sID = Apply.sID] Apply
 */
 
+select "";
 select "Theta Join";
 
 # select *
@@ -103,6 +141,10 @@ select "Theta Join";
 #     from Student
 #     inner join Apply on Student.sID = Apply.sID;
 
+explain select *
+    from Student
+    inner join Apply using (sID);
+
 select *
     from Student
     inner join Apply using (sID);
@@ -111,7 +153,11 @@ select *
 Student natural join Apply
 */
 
+select "";
 select "Natural Join";
+
+explain select *
+    from Student natural join Apply;
 
 select *
     from Student natural join Apply;
@@ -129,7 +175,17 @@ project[sName, GPA]
         (Student join Apply))
 */
 
+explain select *
+    from Student
+    inner join Apply using (sID)
+    where (sizeHS > 1000) and (major = 'CS') and (decision = false);
+
 select *
+    from Student
+    inner join Apply using (sID)
+    where (sizeHS > 1000) and (major = 'CS') and (decision = false);
+
+explain select sName, GPA
     from Student
     inner join Apply using (sID)
     where (sizeHS > 1000) and (major = 'CS') and (decision = false);
@@ -154,7 +210,25 @@ project[sName, GPA]
         (Student join Apply join College))
 */
 
+explain select *
+    from Student
+        inner join Apply   using (sID)
+        inner join College using (cName)
+    where (sizeHS     > 500)   and
+          (major      = 'CS')  and
+          (decision   = true)  and
+          (enrollment > 20000);
+
 select *
+    from Student
+        inner join Apply   using (sID)
+        inner join College using (cName)
+    where (sizeHS     > 500)   and
+          (major      = 'CS')  and
+          (decision   = true)  and
+          (enrollment > 20000);
+
+explain select sName, GPA
     from Student
         inner join Apply   using (sID)
         inner join College using (cName)
@@ -175,6 +249,9 @@ select sName, GPA
 /* -----------------------------------------------------------------------
 Drop
 */
+
+select "";
+select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;

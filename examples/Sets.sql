@@ -1,9 +1,15 @@
 use downing_test;
 
 /* -----------------------------------------------------------------------
+Explain
+http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
+*/
+
+/* -----------------------------------------------------------------------
 Drop
 */
 
+select "";
 select "Drop";
 
 drop table if exists Student;
@@ -14,6 +20,7 @@ drop table if exists College;
 Create
 */
 
+select "";
 select "Create";
 
 create table Student (
@@ -37,6 +44,7 @@ create table College (
 Insert
 */
 
+select "";
 select "Insert";
 
 insert into Student values (123, 'Amy',    3.9,  1000);
@@ -83,12 +91,34 @@ insert into College values ('MIT',      'MA', 10000);
 insert into College values ('Stanford', 'CA', 15000);
 
 /* -----------------------------------------------------------------------
+Select
+*/
+
+select "";
+select "Select";
+
+explain select * from Student;
+        select * from Student;
+
+explain select * from Apply;
+        select * from Apply;
+
+explain select * from College;
+        select * from College;
+
+/* -----------------------------------------------------------------------
 set union: names of students OR colleges
 */
 
+select "";
 select "set union: names of students OR colleges";
 
-select "this is not right, the attribute name is misleading";
+select "this is not good, the attribute name is misleading";
+
+explain select sName from Student
+union
+select cName from College
+order by sName;
 
 select sName from Student
 union
@@ -96,6 +126,11 @@ select cName from College
 order by sName;
 
 select "this is better";
+
+explain select sName as csName from Student
+union
+select cName as csName from College
+order by csName;
 
 select sName as csName from Student
 union
@@ -106,10 +141,18 @@ order by csName;
 set intersection: names of students AND colleges
 */
 
+select "";
 select "set intersection: names of students AND colleges";
 select "MySQL does not support intersect";
 
 select "using inner join";
+
+explain select *
+    from
+        (select sName as csName from Student) as R
+        inner join
+        (select cName as csName from College) as S
+        using (csName);
 
 select *
     from
@@ -120,6 +163,12 @@ select *
 
 select "using a subquery, with in";
 
+explain select sName as csName
+    from Student
+    where sName in
+        (select cName
+            from College);
+
 select sName as csName
     from Student
     where sName in
@@ -127,6 +176,13 @@ select sName as csName
             from College);
 
 select "using a subquery, with exists";
+
+explain select sName as csName
+    from Student
+    where exists
+        (select *
+            from College
+            where sName = cName);
 
 select sName as csName
     from Student
@@ -139,31 +195,46 @@ select sName as csName
 set difference: ID of students who did not apply anywhere
 */
 
+select "";
 select "set difference: ID of students who did not apply anywhere";
 select "MySQL does not support except (minus)";
 
 select "using a subquery, with not in";
 
+explain select sID
+    from Student
+    where sID not in
+        (select sID
+            from Apply);
+
 select sID
     from Student
     where sID not in
         (select sID
-            from Apply)
-    order by sID;
+            from Apply);
 
 select "using a subquery, with not exists";
+
+explain select sID
+    from Student
+    where not exists
+        (select *
+            from Apply
+            where Student.sID = Apply.sID);
 
 select sID
     from Student
     where not exists
         (select *
             from Apply
-            where Student.sID = Apply.sID)
-    order by sID;
+            where Student.sID = Apply.sID);
 
 /* -----------------------------------------------------------------------
 Drop
 */
+
+select "";
+select "Drop";
 
 drop table if exists Student;
 drop table if exists Apply;

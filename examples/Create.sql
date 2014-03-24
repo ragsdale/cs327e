@@ -1,6 +1,11 @@
 use downing_test;
 
 /* -----------------------------------------------------------------------
+Explain
+http://www.sitepoint.com/using-explain-to-write-better-mysql-queries/
+*/
+
+/* -----------------------------------------------------------------------
 Drop
 */
 
@@ -14,6 +19,7 @@ drop table if exists College;
 Create
 */
 
+select "";
 select "Create";
 
 create table Student (
@@ -37,6 +43,7 @@ create table College (
 Show
 */
 
+select "";
 select "Show";
 
 show tables;
@@ -48,6 +55,7 @@ show columns from College;
 Insert
 */
 
+select "";
 select "Insert";
 
 insert into Student values (123, 'Amy',    3.9,  1000);
@@ -97,24 +105,23 @@ insert into College values ('Stanford', 'CA', 15000);
 Select
 */
 
+select "";
 select "Select";
 
-select *
-    from Student
-    order by sID;
+explain select * from Student;
+        select * from Student;
 
-select *
-    from Apply
-    order by sID;
+explain select * from Apply;
+        select * from Apply;
 
-select *
-    from College
-    order by cName;
+explain select * from College;
+        select * from College;
 
 /* -----------------------------------------------------------------------
 Drop
 */
 
+select "";
 select "Drop";
 
 drop table if exists Student;
