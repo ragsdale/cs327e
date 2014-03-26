@@ -10,7 +10,11 @@ import Query
 print("ShowDatabases.py")
 
 c = Login.login()
+assert(str(type(c)) == "<type '_mysql.connection'>")
+
 t = Query.query(c, "show databases")
+assert(t is tuple)
+
 assert(t == \
     (('information_schema',), \
      ('downing',), \
